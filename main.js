@@ -5,7 +5,10 @@ data() {
     return {
         logoImage: "lala",
         error: false,
-        newTask: "",
+        newTask: {
+            text: "",
+            done: "false"
+        },
         tasks : [ 
 
             {
@@ -26,11 +29,23 @@ data() {
             text: "fare operazione 4",
             done: false,
             },
-
-
-            
-        ]
+ 
+        ],
 
     }
+},
+methods: {
+    aggiungiTask() {
+        if(this.newTask !== "") { //solo se la stringa è vuota:
+        this.tasks.unshift(this.newTask);
+        }
+        this.newTask = {}
+        
+    },
+    rimuoviTask(indice) {
+        //console.log(indice)
+        this.tasks.splice(indice,1)
+    }
 }
+
 }).mount("#app")
